@@ -78,6 +78,7 @@ export function Home() {
 function Meal({ param, remove }) {
   return (
     <div>
+      <h2>Please add meal</h2>
       {param.map((meal) => (
         <div key={meal.id}>
           <Link to={`/meals/${meal.id}`}>
