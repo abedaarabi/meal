@@ -43,7 +43,7 @@ function ReservationFrom({ postItem, meals, reservations }) {
     <div>
       <div>
         <h3 style={{ color: "blue" }}>
-          you have {currentMeal.limit} / {reservations.length} resrvation
+          you have {currentMeal.limit} / {reservations.length} reservations
         </h3>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
