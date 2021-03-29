@@ -63,7 +63,7 @@ export function Home() {
           </Route>
           <Route path={"/meals/:id"}>
             <Details param={meals} />
-            <Reservations mealLimit={meals} />
+            <Reservations meals={meals} />
           </Route>
           <Route path={"/meal"}>
             <MealForm postData={postData} />

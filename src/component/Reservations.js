@@ -8,7 +8,7 @@ import {
   useParams,
 } from "react-router-dom";
 
-function Reservations({ mealLimit }) {
+function Reservations({ meals }) {
   const [reservations, setReservations] = useState([]);
   const params = useParams();
   const addItem = (data) => {
@@ -35,7 +35,7 @@ function Reservations({ mealLimit }) {
     <div>
       <ReservationFrom
         postItem={addItem}
-        mealLimit={mealLimit}
+        meals={meals}
         reservations={reservations}
       />
       {reservations.map((reservation) => (
