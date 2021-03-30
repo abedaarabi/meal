@@ -6,7 +6,7 @@ function MealForm({ postData }) {
 
   const onSubmit = (data) => {
     const dataForm = new FormData();
-    data.id = Math.floor(Math.random() * 100);
+    data.id = Date.now() * Math.floor(Math.random() * 100);
     // data.image = data.image[0];
     // dataForm.append("image", data.image[0]);
     dataForm.append("title", data.title);
@@ -26,8 +26,8 @@ function MealForm({ postData }) {
         .post("http://104.131.66.109:5000/meal", dataForm, config)
         .then((response) => console.log(response))
         .catch((err) => console.log(err));
-      postData(data);
     }
+    postData(data);
   };
   return (
     <div>

@@ -25,6 +25,7 @@ export function Home() {
 
   const postData = (data) => {
     const newpost = meals.concat(data);
+    console.log(data);
     setMeals(newpost);
   };
 
@@ -69,6 +70,11 @@ export function Home() {
             <MealForm postData={postData} />
             <Meal param={meals} remove={deleteMeal} />
           </Route>
+          <Route path={"*"}>
+            <div>
+              <h1>Error 404</h1>
+            </div>
+          </Route>
         </Switch>
       )}
     </Router>
@@ -76,6 +82,7 @@ export function Home() {
 }
 
 function Meal({ param, remove }) {
+  console.log(param);
   return (
     <div>
       <h2>Please add meal</h2>
@@ -100,15 +107,24 @@ function Details({ param }) {
   const currentParam = param.find(
     (paramId) => Number(params.id) === paramId.id
   );
+  console.log(currentParam);
 
   return (
     <div>
-      <Link to={"/"}> Home </Link>
-      <h3>{currentParam.created_date}</h3>
-      <h3>{currentParam.price} dkk</h3>
-      <h3>{currentParam.title}</h3>
+      {!currentParam ? (
+        <div>Meal not Find</div>
+      ) : (
+        <div>
+          <div key={currentParam.mealId}>
+            <Link to={"/"}> Home </Link>
+            <h3>{currentParam.created_date}</h3>
+            <h3>{currentParam.price} dkk</h3>
+            <h3>{currentParam.title}</h3>
 
-      <div></div>
+            <div></div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

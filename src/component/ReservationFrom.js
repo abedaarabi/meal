@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { BrowserRouter as Router, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Link, useParams } from "react-router-dom";
 
 function ReservationFrom({ postItem, meals, reservations }) {
   const params = useParams();
@@ -19,7 +19,7 @@ function ReservationFrom({ postItem, meals, reservations }) {
       return;
     }
 
-    data.id = Math.floor(Math.random() * 100);
+    data.id = Date.now() * Math.floor(Math.random() * 100);
     data.mealId = params.id;
     console.log(data);
     if (!data.name || !data.email) {
@@ -30,15 +30,24 @@ function ReservationFrom({ postItem, meals, reservations }) {
         .post("http://104.131.66.109:5000/reservations", data)
         .then((response) => console.log(response))
         .catch((err) => console.log(err));
-      postItem(data);
     }
+    postItem(data);
   };
+
   useEffect(() => {
     const time = setTimeout(() => {
       setIsReservationAllowed(false);
     }, 2 * 1000);
     return () => clearTimeout(time);
   });
+  if (!currentMeal) {
+    return (
+      <div>
+        <Link to={"/"}> Home </Link>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div>
